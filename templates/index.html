@@ -1,0 +1,26 @@
+<body>
+<h1>Пользователи</h1>
+{% if messages %}
+  <ul classes=flashes>
+    {% for category, message in messages %}
+    <li class="{{  category  }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+<form action="{{ url_for('users') }}" method="get">
+    <input placeholder="name" type="search" name="term" value="{{ name }}" />
+    <input type="submit" value="Search"/>
+    <a href="{{ url_for('new_user') }}" class="create">Создать нового пользователя</a>
+    <br>
+    <table> <h2>Список пользователей</h2>
+        <tr><th>Никнейм</th><th>Email</th><th>ID</th></tr>
+        {% for user in users %}
+        <tr>
+            <td align="center">{{ user.nickname }}</td>
+            <td align="center">{{ user.email }}</td>
+            <td align="center">{{ user.id  }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+</body>
